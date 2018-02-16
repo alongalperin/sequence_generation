@@ -44,5 +44,15 @@ print('now we have %d records' %len(lyrics))
 ```
 now we have 266,557 records  
   
-We think that this are enough lyrics.  
-
+we can see that we have enoght songs lyrics.  
+  
+We saw that in the dataset there are songs of Eminem, Beyonce-Knowles and Arctic Monkeys.  
+We will check if we have at least 50 songs for each artist:  
+```
+print ('Eminem has %d songs' % len(lyrics.loc[lyrics['artist'] == 'eminem']))
+print ('Beyonce has %d songs' % len(lyrics.loc[lyrics['artist'] == 'beyonce-knowles']))
+print ('Arctic-Monkeys has %d songs' % len(lyrics.loc[lyrics['artist'] == 'arctic-monkeys']))
+```
+Eminem has 578 songs
+Beyonce has 248 songs
+Arctic-Monkeys has 134 songs
