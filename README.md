@@ -36,3 +36,11 @@ We will check for how many missing values are there. The columns that important 
 lyrics.apply(lambda x: sum(x.isnull()),axis=0)
 ```
 ![missing values](https://github.com/alongalperin/sequence_generation/blob/master/images/missing.JPG)  
+  
+We see that we have a lot of records with missing lyrics. We will drop these rows and check with how many records we remained:  
+```
+lyrics.dropna(subset=['lyrics'], inplace=True)
+print('now we have %d records' %len(lyrics))
+```
+now we have 266557 records
+
