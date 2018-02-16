@@ -1,7 +1,6 @@
 # Workshop for Data Scientist Final Project  
 ## Sequence Generation with Keras 
-## By Alon Galperin & Matan Yeshurun 
-
+## By Alon Galperin & Matan Yeshurun  
 The subject of our mission is songs lyrics.
 
 # Part A - Data Collection
@@ -21,3 +20,8 @@ __Structure:__
 | artist      | string |
 | genre      | string |
 | lyrics      | string |  
+  
+At first we will load the csv to dataframe  
+```
+lyrics = pd.read_csv('./lyrics.csv')  
+```
