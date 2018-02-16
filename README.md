@@ -67,6 +67,35 @@ beyonce_songs = lyrics.loc[lyrics['artist'] == 'beyonce-knowles'][:130]
 arctic_monkeys_songs = lyrics.loc[lyrics['artist'] == 'arctic-monkeys'][:130]
 
 total_songs = eminem_songs.append([beyonce_songs,arctic_monkeys_songs])
-print('our total songs has %d songs' % len(total_songs))
+print('We have total of %d songs' % len(total_songs))
 ```
-our total songs has 390 songs
+We have total of 390 songs  
+  
+# Part 2: Building Classifier for Classifying Lyrics and artists  
+In this part we need to prepare and clean the data. First we will clean the data.  
+We dont need to check for missing values since we handled this on part 1.  
+  
+The steps that we are going to apply are:  
+1. Change the text format to uff-8.
+2. Change the text to lower-case.
+3. Tokenize the sentences to words token.
+4. Stop words removal. We also remove puncuation (using python puncuation list string.punctuation)
+5. Stem the words using Porter Stemmer
+Last step we will concat the sentence together  
+
+word_punct_tokenizer = WordPunctTokenizer() # from nltk.tokenize
+stop_words = stopwords.words('english') + list(string.punctuation)
+ps = PorterStemmer()
+```
+def clean_and_prepare(text):
+    text = text.decode("utf-8")
+    text = text.lower()
+    text_tokens = word_punct_tokenizer.tokenize(text)
+    meaningful_words  = [w for w in text_tokens if not w in stop_words]
+    stemmed_text = []
+    for word in meaningful_words :
+        stem = ps.stem(word)
+        stemmed_text.append(stem)
+    text = ' '.join(stemmed_text)
+    return text
+```
