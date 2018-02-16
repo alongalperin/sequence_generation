@@ -1,2 +1,3 @@
-# sequence_generation
-Final Project for course: Workshop for Data Scientist Final Project
+# Workshop for Data Scientist Final Project  
+## Sequence Generation with Keras 
+## By Alon Galperin & Matan Yeshurun 
