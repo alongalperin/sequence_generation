@@ -42,5 +42,7 @@ We see that we have a lot of records with missing lyrics. We will drop these row
 lyrics.dropna(subset=['lyrics'], inplace=True)
 print('now we have %d records' %len(lyrics))
 ```
-now we have 266557 records
+now we have 266,557 records  
+  
+We think that this are enough lyrics.  
 
