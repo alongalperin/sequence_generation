@@ -53,6 +53,20 @@ print ('Eminem has %d songs' % len(lyrics.loc[lyrics['artist'] == 'eminem']))
 print ('Beyonce has %d songs' % len(lyrics.loc[lyrics['artist'] == 'beyonce-knowles']))
 print ('Arctic-Monkeys has %d songs' % len(lyrics.loc[lyrics['artist'] == 'arctic-monkeys']))
 ```
-Eminem has 578 songs
-Beyonce has 248 songs
-Arctic-Monkeys has 134 songs
+Eminem has 578 songs  
+Beyonce has 248 songs  
+Arctic-Monkeys has 134 songs  
+  
+We can see that the lowest number of songs is the number of Arctic Monkeys songs, so we will take **130** songs from each artist.   
+We will concat all the 3 artists lyrics to 1 dataset. 
+```
+eminem_songs = lyrics.loc[lyrics['artist'] == 'eminem'][:130]
+
+beyonce_songs = lyrics.loc[lyrics['artist'] == 'beyonce-knowles'][:130]
+
+arctic_monkeys_songs = lyrics.loc[lyrics['artist'] == 'arctic-monkeys'][:130]
+
+total_songs = eminem_songs.append([beyonce_songs,arctic_monkeys_songs])
+print('our total songs has %d songs' % len(total_songs))
+```
+our total songs has 390 songs
