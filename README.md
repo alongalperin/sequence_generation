@@ -29,4 +29,10 @@ We want to see how the data looks, we will print the first 5 records:
 ```
 print lyrics.head()
 ```
-![head raw](https://github.com/alongalperin/sequence_generation/blob/master/images/head.JPG)
+![head raw](https://github.com/alongalperin/sequence_generation/blob/master/images/head.JPG)  
+  
+We will check for how many missing values are there. The columns that important for us the most are: artist and lyrics.  
+```
+lyrics.apply(lambda x: sum(x.isnull()),axis=0)
+```
+![missing values](https://github.com/alongalperin/sequence_generation/blob/master/images/missing.JPG)  
