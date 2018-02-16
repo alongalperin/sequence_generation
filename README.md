@@ -21,7 +21,11 @@ __Structure:__
 | genre      | string |
 | lyrics      | string |  
   
-At first we will load the csv to dataframe  
+At first we load the csv to dataframe  
 ```
 lyrics = pd.read_csv('./lyrics.csv')  
+```
+We want to see how the data looks, we will print the first 5 records:  
+```
+print lyrics.head()
 ```
