@@ -29,3 +29,4 @@ We want to see how the data looks, we will print the first 5 records:
 ```
 print lyrics.head()
 ```
+![head raw](https://github.com/alongalperin/sequence_generation/blob/master/images/head.JPG)
