@@ -246,3 +246,77 @@ The code for this plot is in the notebook
 We can see that **Random Forest** is leading with the best score.
   
 # Part 3: Songs Generating
+In this part we will show the creation of songs only for Arctic-Monkeys. We did the same proccess  
+for Eminem songs and Beyonce also.  
+First we import all the packeges we need from Keras:
+```
+from keras.models import Sequential
+from keras.layers import Activation,LSTM,Dense
+from keras.optimizers import Adam
+```
+Create array of 50 songs  
+```
+ds = all_songs_original.loc[all_songs_original['artist'] == 'arctic-monkeys']
+ds = ds['lyrics']
+ds = ds [:50]
+songs_lyrics_array = np.array(ds)
+```
+  
+concat all lyrics to one text:  
+  
+```
+txt=''
+for ix in range(len(songs_lyrics_array)):
+    try:
+        txt+=songs_lyrics_array[ix]
+    except:
+        print ('cant read: ')
+        print (songs_lyrics_array[ix])
+```
+
+The set of targets is stored in next_chars which is the next character after the window of 40. There will be lots of overlap in each window.
+
+We are going to train our model to predict the next character, based on the previous 40 characters
+```
+vocab=list(set(txt))
+char_ix={c:i for i,c in enumerate(vocab)}
+ix_char={i:c for i,c in enumerate(vocab)}
+
+maxlen=40
+vocab_size=len(vocab)
+
+sentences=[]
+next_char=[]
+for i in range(len(txt)-maxlen-1):
+    sentences.append(txt[i:i+maxlen])
+    next_char.append(txt[i+maxlen])
+```
+
+A 1 hot vector for a character, is a vector that is the size of the number of characters in the corpus.  
+The index of the given character is set to 1, while all others are set to 0.  
+```
+X=np.zeros((len(sentences),maxlen,vocab_size))
+y=np.zeros((len(sentences),vocab_size))
+for ix in range(len(sentences)):
+    y[ix,char_ix[next_char[ix]]]=1
+    for iy in range(maxlen):
+        X[ix,iy,char_ix[sentences[ix][iy]]]=1
+```
+
+The shape of the input is the window length of 1 hot vectors  
+The number of LSTM units is 128  
+Lastly we have dense layer with a softmax output which can predict the possible target character  
+```
+model=Sequential()
+model.add(LSTM(128,input_shape=(maxlen,vocab_size)))
+model.add(Dense(vocab_size))
+model.add(Activation('softmax'))
+model.summary()
+model.compile(optimizer=Adam(lr=0.01),loss='categorical_crossentropy')
+```
+  
+fit the model
+```
+model.fit(X,y,epochs=20,batch_size=128)
+```
+
