@@ -181,6 +181,7 @@ random_forest.fit(x_train, y_train)
 Predict and get the score of Random Forest:  
 ```
 score = random_forest.score(x_test, y_test)
+print ('the score is: %f'  %score)
 ```
 output: the score is: 0.871795  
   
@@ -203,4 +204,42 @@ print ('the score is: %f'  %score)
 ```
 
 output: the score is: 0.769231  
+  
+### Naive Bayes using Gaussian function (GaussianNB)
+Fit the model:  
+```
+gaussianNB = GaussianNB()
+x_train_not_dense = x_train.toarray() # Naive Bayes not working on dense matries
+gaussianNB.fit(x_train_not_dense, y_train)
+```
+Predict and get the score of Naive Bayes:  
+```
+x_test_not_dense = x_test.toarray() # Naive Bayes not working on dense matries
 
+score = gaussianNB.score(x_test_not_dense, y_test)
+print ('the score is: %f'  %score)
+```
+output: the score is: 0.602564  
+  
+### Nural Network (not Keras)
+The configurations are after 2-3 tries with diffrent hidden_layer_sizes sizes  
+Fit the model:  
+```
+mlpClassifier = MLPClassifier(solver='lbfgs', alpha=1e-5, hidden_layer_sizes=(5, 2), random_state=1)
+mlpClassifier.fit(x_train, y_train)
+```
+Predict and get the score of LinearSVC:  
+```
+x_test_not_dense = x_test.toarray() #  mlpClassifier not working on dense matries so we enter the original x_test
+
+score = mlpClassifier.score(x_test_not_dense, y_test)
+print ('the score is: %f'  %score)
+```
+output: the score is: 0.807692  
+  
+### Plot results comparison:
+We used python matplotlib to plot the following graph on data saved in algorithm_results array:  
+The code for this plot is in the notebook  
+
+![results](https://github.com/alongalperin/sequence_generation/blob/master/images/result_plot.JPG)  
+  
