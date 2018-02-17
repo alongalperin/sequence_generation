@@ -118,16 +118,17 @@ total_songs = total_songs.reindex(np.random.permutation(total_songs.index))
 ### Split the dataset to train and test sets
 We split the dataset to 80% and 20% train and test set  
 The data (x) is the lyrics and the target (y) is the artist name  
-'''
+
+```
 df_train, df_test = train_test_split(total_songs, test_size=0.2)
 
 x_train = df_train['lyrics']
 y_train = df_train['artist']
 
 x_test = df_test['lyrics']
-y_test = df_test['artist']
-'''
+y_test = df_test['artist']  
+```
   
 | Train set | Test set |
 |:------------- |:------------- |
-| 312      | 78 |
+| 312 records     | 78 records |
