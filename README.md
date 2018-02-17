@@ -104,5 +104,6 @@ We will print the 5 lyrics before and after the cleaning:
 Before cleaninig:  
 ![beforecleaninig](https://github.com/alongalperin/sequence_generation/blob/master/images/text_before.JPG)  
 
-After cleaning:
+After cleaning:  
+We can see that all the text is lower case, the stop words and pucnchuation are not there, and the text is stemeed.  
 ![aftercleaning](https://github.com/alongalperin/sequence_generation/blob/master/images/text_after.JPG)  
