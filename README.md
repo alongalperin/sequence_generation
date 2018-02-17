@@ -132,3 +132,75 @@ y_test = df_test['artist']
 | Train set | Test set |
 |:------------- |:------------- |
 | 312 records     | 78 records |
+  
+### Prepare the data for classification algorithms
+__We will transform the data from domain of words(strings) to numric domain.__
+The reason is that almost all of the ML algorithms we learned - can handle only numric input and cant handle string.  
+The method that we are going to use called TFIDF (as learned in lesson 12).  
+TFIDF will convert the domain from world of string and words - to world of **document frequency**. The number in  
+the matrix will represent statistic that will reflect how important a word is to the songs collection.  
+  
+**Also**  the matrix will be sparse, that mean that it be effient in space and it won't have entries for values  
+that are null in the frequency table.  
+We won't define configurations for this step. Since we read in the internet that the basic configurations are working OK.  
+The defualts are: use_idf = true,  smooth_idf  = true,  sublinear_tf  = false, norm = none  
+```
+TfidfVectorizer = TfidfVectorizer()
+
+x_train = TfidfVectorizer.fit_transform(x_train)
+x_test = TfidfVectorizer.transform(x_test)
+```
+  
+Change target attribute from words to numric representation.  
+In this step we will change the values in the target attribute from words (strings)  
+to numric.  
+Example: If we have target attribute of singers so we will change each singer name with a number  
+arctic-monkeys -> 0  
+beyonce-knowles -> 1  
+eminem -> 2  
+  
+We will use LabelEncoder of NLTK to do this task (as learned in lesson 8).  
+```
+le = preprocessing.LabelEncoder()
+
+y_train = le.fit_transform(y_train)
+y_test = le.transform(y_test)
+```
+
+## Train the Models:
+### Random Forest:
+We will maintain array called algorithm_results that will contain the result of the algorithms.  
+We checked and saw that n_estimators=100 gets us the best results  
+In the code below we create the model and fit it according to our train data
+```
+random_forest = RandomForestClassifier(n_estimators=100)
+
+random_forest.fit(x_train, y_train)
+```
+  
+Predict and get the score of Random Forest:  
+```
+score = random_forest.score(x_test, y_test)
+```
+output: the score is: 0.871795  
+  
+### LinearSVC:
+This is variation of Support Vector Machine, considered to work well on text classification  
+We searched the internet and saw that the most common configurations are penalty of type "l1" and tol=le-3 
+```
+svc = LinearSVC(penalty="l1", dual=False, tol=1e-3)
+svc.fit(x_train, y_train)
+```
+Fit the model:
+```
+svc = LinearSVC(penalty="l1", dual=False, tol=1e-3)
+svc.fit(x_train, y_train)
+```
+Predict and get the score of LinearSVC:  
+```
+score = svc.score(x_test, y_test)
+print ('the score is: %f'  %score)
+```
+
+output: the score is: 0.769231  
+
