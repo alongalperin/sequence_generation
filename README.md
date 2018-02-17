@@ -108,5 +108,26 @@ After cleaning:
 We can see that all the text is lower case, the stop words and pucnchuation are not there, and the text is stemeed.  
 ![aftercleaning](https://github.com/alongalperin/sequence_generation/blob/master/images/text_after.JPG)  
 Additional inforamtion that we want see check is what is the average song length for Eminem, Beyonce-Knowles and Arctic Monkeys. Maybe it will be usefull in the future.  
+  
 ![avg;ength](https://github.com/alongalperin/sequence_generation/blob/master/images/avg_length.JPG)  
+  
+We shuffle the records in the dataset. So we have mix of artists in the train and test set
+```
+total_songs = total_songs.reindex(np.random.permutation(total_songs.index))
+```
+### Split the dataset to train and test sets
+We split the dataset to 80% and 20% train and test set  
+The data (x) is the lyrics and the target (y) is the artist name  
+'''
+df_train, df_test = train_test_split(total_songs, test_size=0.2)
 
+x_train = df_train['lyrics']
+y_train = df_train['artist']
+
+x_test = df_test['lyrics']
+y_test = df_test['artist']
+'''
+  
+| Train set | Test set |
+|:------------- |:------------- |
+| 312      | 78 |
