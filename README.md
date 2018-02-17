@@ -243,3 +243,4 @@ The code for this plot is in the notebook
 
 ![results](https://github.com/alongalperin/sequence_generation/blob/master/images/result_plot.JPG)  
   
+We can see that **Random Forest** is leading with the best score
