@@ -107,3 +107,6 @@ Before cleaninig:
 After cleaning:  
 We can see that all the text is lower case, the stop words and pucnchuation are not there, and the text is stemeed.  
 ![aftercleaning](https://github.com/alongalperin/sequence_generation/blob/master/images/text_after.JPG)  
+Additional inforamtion that we want see check is what is the average song length for Eminem, Beyonce-Knowles and Arctic Monkeys. Maybe it will be usefull in the future.  
+![avg;ength](https://github.com/alongalperin/sequence_generation/blob/master/images/avg_length.JPG)  
+
