@@ -319,4 +319,21 @@ fit the model
 ```
 model.fit(X,y,epochs=20,batch_size=128)
 ```
+  
+We create function that generate song using the Keras network we complied.  
+We will create 130 songs for each of the 3 artists:  
+```
+df_songs_generated = pd.DataFrame(columns=['lyrics'])
+counter = 0
+
+while (counter < 130):
+    generated_song = generate_song()
+    df_songs_generated.loc[counter] = generated_song
+    counter += 1
+```
+  
+Save  the songs to csv  
+```
+df_songs_generated.to_csv('arctic-monkeys_song_generated.csv', sep=',')
+```
 
