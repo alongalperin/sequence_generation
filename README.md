@@ -72,7 +72,8 @@ print('We have total of %d songs' % len(total_songs))
 We have total of 390 songs  
   
 # Part 2: Building Classifier for Classifying Lyrics and artists  
-In this part we need to prepare and clean the data. First we will clean the data.  
+### Data Preparation
+In this step we need to prepare and clean the data. First we will clean the data.  
 We dont need to check for missing values since we handled this on part 1.  
   
 The steps that we are going to apply are:  
@@ -99,4 +100,9 @@ def clean_and_prepare(text):
     text = ' '.join(stemmed_text)
     return text
 ```
+We will print the 5 lyrics before and after the cleaning:  
+Before cleaninig:  
+![beforecleaninig](https://github.com/alongalperin/sequence_generation/blob/master/images/text_before.JPG)  
 
+After cleaning:
+![aftercleaning](https://github.com/alongalperin/sequence_generation/blob/master/images/text_after.JPG)  
