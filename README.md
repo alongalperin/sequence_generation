@@ -42,8 +42,10 @@ We see that we have a lot of records with missing lyrics. We will drop these row
 lyrics.dropna(subset=['lyrics'], inplace=True)
 print('now we have %d records' %len(lyrics))
 ```
-now we have 266,557 records  
+output: now we have 266,557 records  
   
+Summary: We started with corpus of 380,000 songs. After we dropped songs that had no lyrics  
+we have 266,557 songs.  
 we can see that we have enoght songs lyrics.  
   
 We saw that in the dataset there are songs of Eminem, Beyonce-Knowles and Arctic Monkeys.  
