@@ -71,7 +71,7 @@ print('We have total of %d songs' % len(total_songs))
 ```
 We have total of 390 songs  
   
-# Part 2: Building Classifier for Classifying Lyrics and artists  
+# Part B: Building Classifier for Classifying Lyrics and artists  
 ### Data Preparation
 In this step we need to prepare and clean the data. First we will clean the data.  
 We dont need to check for missing values since we handled this on part 1.  
@@ -245,7 +245,7 @@ The code for this plot is in the notebook
   
 We can see that **Random Forest** is leading with the best score.
   
-# Part 3: Songs Generating
+# Part C: Songs Generating
 In this part we will show the creation of songs only for Arctic-Monkeys. We did the same proccess  
 for Eminem songs and Beyonce also.  
 First we import all the packeges we need from Keras:
@@ -337,3 +337,16 @@ Save  the songs to csv
 df_songs_generated.to_csv('arctic-monkeys_song_generated.csv', sep=',')
 ```
 
+# Part D: Classifying the Generated Songs
+  
+In this part will run the algorithm that gave us the maximum accuracy in part B on out generated songs.  
+The algorithm that was the most accurate in Part B was Random Forest algorithm.  
+  
+The steps are:  
+1. Read all the generated songs.  
+2. Preform preprocess to the songs text, by using the same preproccess we did in part B.  
+3. Create dataframe for lyrics (x_test) and dataframe for targer (y_test).  
+4. Change the lyrics to numeric representation using tfidfVectorizer from part B.  
+5. Change the target representation from singers names to number using LabelEncoder from part B.  
+6. Run the algorithm and check for accuracy.  
+  
