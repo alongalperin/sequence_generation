@@ -22,23 +22,23 @@ __Structure:__
 | lyrics      | string |  
   
 At first we load the csv to dataframe  
-```
+``` python
 lyrics = pd.read_csv('./lyrics.csv')  
 ```
 We want to see how the data looks, we will print the first 5 records:  
-```
+``` python
 print lyrics.head()
 ```
 ![head raw](https://github.com/alongalperin/sequence_generation/blob/master/images/head.JPG)  
   
 We will check for how many missing values are there. The columns that important for us the most are: artist and lyrics.  
-```
+``` python
 lyrics.apply(lambda x: sum(x.isnull()),axis=0)
 ```
 ![missing values](https://github.com/alongalperin/sequence_generation/blob/master/images/missing.JPG)  
   
 We see that we have a lot of records with missing lyrics. We will drop these rows and check with how many records we remained:  
-```
+``` python
 lyrics.dropna(subset=['lyrics'], inplace=True)
 print('now we have %d records' %len(lyrics))
 ```
@@ -48,7 +48,7 @@ we can see that we have enoght songs lyrics.
   
 We saw that in the dataset there are songs of Eminem, Beyonce-Knowles and Arctic Monkeys.  
 We will check if we have at least 50 songs for each artist:  
-```
+``` python
 print ('Eminem has %d songs' % len(lyrics.loc[lyrics['artist'] == 'eminem']))
 print ('Beyonce has %d songs' % len(lyrics.loc[lyrics['artist'] == 'beyonce-knowles']))
 print ('Arctic-Monkeys has %d songs' % len(lyrics.loc[lyrics['artist'] == 'arctic-monkeys']))
@@ -59,7 +59,7 @@ Arctic-Monkeys has 134 songs
   
 We can see that the lowest number of songs is the number of Arctic Monkeys songs, so we will take **130** songs from each artist.   
 We will concat all the 3 artists lyrics to 1 dataset. 
-```
+``` python
 eminem_songs = lyrics.loc[lyrics['artist'] == 'eminem'][:130]
 
 beyonce_songs = lyrics.loc[lyrics['artist'] == 'beyonce-knowles'][:130]
@@ -112,14 +112,14 @@ Additional inforamtion that we want see check is what is the average song length
 ![avg;ength](https://github.com/alongalperin/sequence_generation/blob/master/images/avg_length.JPG)  
   
 We shuffle the records in the dataset. So we have mix of artists in the train and test set
-```
+``` python
 total_songs = total_songs.reindex(np.random.permutation(total_songs.index))
 ```
 ### Split the dataset to train and test sets
 We split the dataset to 80% and 20% train and test set  
 The data (x) is the lyrics and the target (y) is the artist name  
 
-```
+``` python
 df_train, df_test = train_test_split(total_songs, test_size=0.2)
 
 x_train = df_train['lyrics']
@@ -144,7 +144,7 @@ the matrix will represent statistic that will reflect how important a word is to
 that are null in the frequency table.  
 We won't define configurations for this step. Since we read in the internet that the basic configurations are working OK.  
 The defualts are: use_idf = true,  smooth_idf  = true,  sublinear_tf  = false, norm = none  
-```
+``` python
 TfidfVectorizer = TfidfVectorizer()
 
 x_train = TfidfVectorizer.fit_transform(x_train)
@@ -160,7 +160,7 @@ beyonce-knowles -> 1
 eminem -> 2  
   
 We will use LabelEncoder of NLTK to do this task (as learned in lesson 8).  
-```
+``` python
 le = preprocessing.LabelEncoder()
 
 y_train = le.fit_transform(y_train)
@@ -172,13 +172,13 @@ y_test = le.transform(y_test)
 We will maintain array called algorithm_results that will contain the result of the algorithms.  
 We checked and saw that n_estimators=100 gets us the best results  
 In the code below we create the model and fit it according to our train data
-```
+``` python
 random_forest = RandomForestClassifier(n_estimators=100)
 random_forest.fit(x_train, y_train)
 ```
   
 Predict and get the score of Random Forest:  
-```
+``` python
 score = random_forest.score(x_test, y_test)
 print ('the score is: %f'  %score)
 ```
@@ -187,17 +187,17 @@ output: the score is: 0.871795
 ### LinearSVC:
 This is variation of Support Vector Machine, considered to work well on text classification  
 We searched the internet and saw that the most common configurations are penalty of type "l1" and tol=le-3 
-```
+``` python
 svc = LinearSVC(penalty="l1", dual=False, tol=1e-3)
 svc.fit(x_train, y_train)
 ```
 Fit the model:
-```
+``` python
 svc = LinearSVC(penalty="l1", dual=False, tol=1e-3)
 svc.fit(x_train, y_train)
 ```
 Predict and get the score of LinearSVC:  
-```
+``` python
 score = svc.score(x_test, y_test)
 print ('the score is: %f'  %score)
 ```
@@ -206,13 +206,13 @@ output: the score is: 0.769231
   
 ### Naive Bayes using Gaussian function (GaussianNB)
 Fit the model:  
-```
+``` python
 gaussianNB = GaussianNB()
 x_train_not_dense = x_train.toarray() # Naive Bayes not working on dense matries
 gaussianNB.fit(x_train_not_dense, y_train)
 ```
 Predict and get the score of Naive Bayes:  
-```
+``` python
 x_test_not_dense = x_test.toarray() # Naive Bayes not working on dense matries
 
 score = gaussianNB.score(x_test_not_dense, y_test)
@@ -223,12 +223,12 @@ output: the score is: 0.602564
 ### Nural Network (not Keras)
 The configurations are after 2-3 tries with diffrent hidden_layer_sizes sizes  
 Fit the model:  
-```
+``` python
 mlpClassifier = MLPClassifier(solver='lbfgs', alpha=1e-5, hidden_layer_sizes=(5, 2), random_state=1)
 mlpClassifier.fit(x_train, y_train)
 ```
 Predict and get the score of LinearSVC:  
-```
+``` python
 x_test_not_dense = x_test.toarray() #  mlpClassifier not working on dense matries so we enter the original x_test
 
 score = mlpClassifier.score(x_test_not_dense, y_test)
@@ -248,13 +248,13 @@ We can see that **Random Forest** is leading with the best score.
 In this part we will show the creation of songs only for Arctic-Monkeys. We did the same proccess  
 for Eminem songs and Beyonce also.  
 First we import all the packeges we need from Keras:
-```
+``` python
 from keras.models import Sequential
 from keras.layers import Activation,LSTM,Dense
 from keras.optimizers import Adam
 ```
 Create array of 50 songs  
-```
+``` python
 ds = all_songs_original.loc[all_songs_original['artist'] == 'arctic-monkeys']
 ds = ds['lyrics']
 ds = ds [:50]
@@ -263,7 +263,7 @@ songs_lyrics_array = np.array(ds)
   
 concat all lyrics to one text:  
   
-```
+``` python
 txt=''
 for ix in range(len(songs_lyrics_array)):
     try:
@@ -276,7 +276,7 @@ for ix in range(len(songs_lyrics_array)):
 The set of targets is stored in next_chars which is the next character after the window of 40. There will be lots of overlap in each window.
 
 We are going to train our model to predict the next character, based on the previous 40 characters
-```
+``` python
 vocab=list(set(txt))
 char_ix={c:i for i,c in enumerate(vocab)}
 ix_char={i:c for i,c in enumerate(vocab)}
@@ -293,7 +293,7 @@ for i in range(len(txt)-maxlen-1):
 
 A 1 hot vector for a character, is a vector that is the size of the number of characters in the corpus.  
 The index of the given character is set to 1, while all others are set to 0.  
-```
+``` python
 X=np.zeros((len(sentences),maxlen,vocab_size))
 y=np.zeros((len(sentences),vocab_size))
 for ix in range(len(sentences)):
@@ -305,7 +305,7 @@ for ix in range(len(sentences)):
 The shape of the input is the window length of 1 hot vectors  
 The number of LSTM units is 128  
 Lastly we have dense layer with a softmax output which can predict the possible target character  
-```
+``` python
 model=Sequential()
 model.add(LSTM(128,input_shape=(maxlen,vocab_size)))
 model.add(Dense(vocab_size))
@@ -315,13 +315,13 @@ model.compile(optimizer=Adam(lr=0.01),loss='categorical_crossentropy')
 ```
   
 fit the model
-```
+``` python
 model.fit(X,y,epochs=20,batch_size=128)
 ```
   
 We create function that generate song using the Keras network we complied.  
 We will create 130 songs for each of the 3 artists:  
-```
+``` python
 df_songs_generated = pd.DataFrame(columns=['lyrics'])
 counter = 0
 
@@ -332,7 +332,7 @@ while (counter < 130):
 ```
   
 Save  the songs to csv  
-```
+``` python
 df_songs_generated.to_csv('arctic-monkeys_song_generated.csv', sep=',')
 ```
 
