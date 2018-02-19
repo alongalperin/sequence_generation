@@ -72,7 +72,8 @@ total_songs = eminem_songs.append([beyonce_songs,arctic_monkeys_songs])
 print('We have total of %d songs' % len(total_songs))
 ```
 We have total of 390 songs  
-  
+In part B we will check the avg length of each song, we will do it in part B after stopwords removal.
+
 # Part B: Building Classifier for Classifying Lyrics and artists  
 ### Data Preparation
 In this step we need to prepare and clean the data. First we will clean the data.  
