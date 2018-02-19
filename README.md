@@ -384,7 +384,7 @@ step 6:
 score = random_forest.score(x_test, y_test)
 print ('the score is: %f'  %score)
 ```
-output: the score is: 0.680000
-We reached to 68% precenetage of accuracy.
+output: the score is: 0.680000  
+We reached to 68% precenetage of accuracy.  
 We will print confusion matrix (we will leave the code in the notebook and not attach it here)  
-![alt text](https://github.com/alongalperin/sequence_generation/blob/master/images/confusion.png)
+![alt text](https://github.com/alongalperin/sequence_generation/blob/master/images/confusion.png)  
