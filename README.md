@@ -350,7 +350,7 @@ The steps are:
 5. Change the target representation from singers names to number using LabelEncoder from part B.  
 6. Run the algorithm and check for accuracy.  
   
-step 1:  
+step 1:
 ``` python
 eminem_generated_songs = pd.read_csv('./eminem_song_generated.csv')
 beyonce_generated_songs = pd.read_csv('./beyonce-knowles_song_generated.csv')
@@ -361,7 +361,7 @@ total_generated_songs = eminem_generated_songs.append([beyonce_generated_songs,a
 # re-arrange the indices
 total_generated_songs.reset_index(drop=True, inplace=True)
 ```
-step 2:  
+step 2:
 ``` python
 for index, row in total_generated_songs.iterrows():
     total_generated_songs.loc[index, "lyrics"] = clean_and_prepare(row['lyrics'])
@@ -371,7 +371,7 @@ step 3:
 x_test = total_generated_songs['lyrics']
 y_test = total_generated_songs['artist']
 ```
-step 4:  
+step 4:
 ``` python
 x_test = tfidfVectorizer.transform(x_test)
 ```
@@ -386,5 +386,5 @@ print ('the score is: %f'  %score)
 ```
 output: the score is: 0.680000  
 We reached to 68% precenetage of accuracy.  
-We will print confusion matrix (we will leave the code in the notebook and not attach it here)  
+We will print confusion matrix (code in the notebook)  
 ![alt text](https://github.com/alongalperin/sequence_generation/blob/master/images/confusion.png)  
