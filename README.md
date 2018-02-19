@@ -84,10 +84,11 @@ The steps that we are going to apply are:
 5. Stem the words using Porter Stemmer
 Last step we will concat the sentence together  
 
+``` python
 word_punct_tokenizer = WordPunctTokenizer() # from nltk.tokenize
 stop_words = stopwords.words('english') + list(string.punctuation)
 ps = PorterStemmer()
-``` python
+
 def clean_and_prepare(text):
     text = text.decode("utf-8")
     text = text.lower()
