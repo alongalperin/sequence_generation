@@ -87,7 +87,7 @@ Last step we will concat the sentence together
 word_punct_tokenizer = WordPunctTokenizer() # from nltk.tokenize
 stop_words = stopwords.words('english') + list(string.punctuation)
 ps = PorterStemmer()
-```
+``` python
 def clean_and_prepare(text):
     text = text.decode("utf-8")
     text = text.lower()
@@ -174,7 +174,6 @@ We checked and saw that n_estimators=100 gets us the best results
 In the code below we create the model and fit it according to our train data
 ```
 random_forest = RandomForestClassifier(n_estimators=100)
-
 random_forest.fit(x_train, y_train)
 ```
   
