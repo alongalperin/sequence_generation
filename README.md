@@ -350,3 +350,40 @@ The steps are:
 5. Change the target representation from singers names to number using LabelEncoder from part B.  
 6. Run the algorithm and check for accuracy.  
   
+1:  
+``` python
+eminem_generated_songs = pd.read_csv('./eminem_song_generated.csv')
+beyonce_generated_songs = pd.read_csv('./beyonce-knowles_song_generated.csv')
+arctic_monkeys_generated_songs = pd.read_csv('./arctic-monkeys_song_generated.csv')
+
+total_generated_songs = eminem_generated_songs.append([beyonce_generated_songs,arctic_monkeys_generated_songs])
+
+# re-arrange the indices
+total_generated_songs.reset_index(drop=True, inplace=True)
+```
+2:  
+``` python
+for index, row in total_generated_songs.iterrows():
+    total_generated_songs.loc[index, "lyrics"] = clean_and_prepare(row['lyrics'])
+```
+3:
+``` python
+x_test = total_generated_songs['lyrics']
+y_test = total_generated_songs['artist']
+```
+4:  
+``` python
+x_test = tfidfVectorizer.transform(x_test)
+```
+5:
+``` python
+y_test = le.transform(y_test)
+```
+6:
+``` python
+score = random_forest.score(x_test, y_test)
+print ('the score is: %f'  %score)
+```
+output: the score is: 0.680000
+
+  
