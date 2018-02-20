@@ -391,7 +391,7 @@ We reached to 95% precenetage of accuracy.
 We will print confusion matrix (code in the notebook)  
 ![alt text](https://github.com/alongalperin/sequence_generation/blob/master/images/confusion_martix2.jpg)  
   
-**Conclusions:**
+**Conclusions:**  
 Data Collection: We saw that Kaggle has many datasets that can be useful for learning purposes. This time Kaggle  
 saved us a lot of time, we didn't have to build scraper for getting the lyrics from lyrics sites.  
 We Saw that more data (songs) means more accuracy. This is the reason we choose artists with large number of songs.  
