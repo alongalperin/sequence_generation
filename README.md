@@ -392,16 +392,15 @@ We will print confusion matrix (code in the notebook)
 ![alt text](https://github.com/alongalperin/sequence_generation/blob/master/images/confusion_martix2.jpg)  
   
 **Conclusions:**  
-Data Collection: We saw that Kaggle has many datasets that can be useful for learning purposes. This time Kaggle  
+**Data Collection:** We saw that Kaggle has many datasets that can be useful for learning purposes. This time Kaggle  
 saved us a lot of time, we didn't have to build scraper for getting the lyrics from lyrics sites.  
 We Saw that more data (songs) means more accuracy. This is the reason we choose artists with large number of songs.  
-Data Cleaning: There is a connection between the quality of the cleaning process to the accuracy. Data cleaning is an  
+**Data Cleaning:** There is a connection between the quality of the cleaning process to the accuracy. Data cleaning is an  
 important step that can really impact the learning and preformance of the learning algorithms.  
 It is recommended to write function for data cleaning so that it can be called many time from every section in the program.  
-Data Classification: Random Forest is the big winner for us. With good accuracy and not many tunning. Random Forest also was mentioned in the course as strong algorithm.  
-Sequence Generations: Working with Keras, a very easy package for working with Nueral Network. In out case Keras was a like a wrapper 
-for Theano.  
+**Data Classification:** Random Forest is the big winner for us. With good accuracy and not many tunning. Random Forest also was mentioned in the course as strong algorithm.  
+**Sequence Generations:** Working with Keras, a very easy package for working with Nueral Network. In out case Keras was a like a wrapper for Theano.  
 The step of Sequence Generations was the most challenging in all of the assignments in the course..  
 The difficulties was to plan the input to the algorithm and to tune the parameters.  
-Data Classification of the Generated Songs: The good results was realy surprising at first, but after thinkning about it and  
+**Data Classification of the Generated Songs:** The good results was realy surprising at first, but after thinkning about it and  
 realizing that the songs was generated from "close" corpus - the great results maked sense. 
