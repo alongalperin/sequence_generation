@@ -403,4 +403,6 @@ It is recommended to write function for data cleaning so that it can be called m
 The step of Sequence Generations was the most challenging in all of the assignments in the course..  
 The difficulties was to plan the input to the algorithm and to tune the parameters.  
 **Data Classification of the Generated Songs:** The good results was realy surprising at first, but after thinkning about it and  
-realizing that the songs was generated from "close" corpus - the great results maked sense. 
+realizing that the songs was generated from "close" corpus - the great results maked sense.  
+  
+# Alon & Matan
