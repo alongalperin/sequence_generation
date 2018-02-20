@@ -44,7 +44,7 @@ print('now we have %d records' %len(lyrics))
 ```
 output: now we have 266,557 records  
   
-Summary: We started with corpus of 380,000 songs. After we dropped songs that had no lyrics  
+Summary so far: We started with corpus of 380,000 songs. After we dropped songs that had no lyrics  
 we have 266,557 songs.  
 we can see that we have enoght songs lyrics.  
   
